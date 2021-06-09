@@ -1,8 +1,8 @@
 <?php
 
-require_once '../includes/autoload.php';
+require_once '../classes/Helper/Helper.php';
 
-$helper = new \Helper\Helper();
+$helper = new Helper();
 
 /**
  * Receiving fields via POST method and validate
@@ -56,7 +56,7 @@ if (empty($_POST["phoneNumber"])) {
     $errorMessage = "Phone number is required";
     array_push($arrayErrorMessage, $errorMessage);
 
-} else if (!\Helper\Helper::validatePhoneNumber($_POST['phoneNumber'])) {
+} else if (!Helper::validatePhoneNumber($_POST['phoneNumber'])) {
     $errorMessage = "Invalid Phone number";
     array_push($arrayErrorMessage, $errorMessage);
 
@@ -85,7 +85,7 @@ if (empty($_POST["password"])) {
     array_push($arrayErrorMessage, $errorMessage);
 
 } else {
-    $password = \Helper\Helper::hashPassword($_POST['password']);
+    $password = Helper::hashPassword($_POST['password']);
     array_push($arrayFields, $password);
 }
 
@@ -94,7 +94,7 @@ if (empty($_POST["password"])) {
  */
 if (!empty($_POST['email']) && !empty($_POST['login'])) {
 
-    if (\Helper\Helper::checkIfEmailOrLoginExists($_POST['email'], $_POST['login'])) {
+    if (Helper::checkIfEmailOrLoginExists($_POST['email'], $_POST['login'])) {
 
         $errorMessage = "Email or Login already exists";
         array_push($arrayErrorMessage, $errorMessage);

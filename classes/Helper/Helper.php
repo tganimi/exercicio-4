@@ -1,7 +1,5 @@
 <?php
 
-namespace Helper;
-
 class Helper
 {
     public static function validatePhoneNumber($phone) : bool {
